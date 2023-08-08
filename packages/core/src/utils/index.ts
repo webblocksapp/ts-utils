@@ -1,1 +1,1 @@
-export * from './formatObjectPath';
+export * from './pathToDotNotation';
