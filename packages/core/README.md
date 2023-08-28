@@ -78,88 +78,93 @@ isEmpty({ name: 'Laura', age: '' }); // Returns false
 isEmpty('Hello'); // Returns false
 ```
 
-## set
+## `set`
 
-The `set` function is used to set a value within a nested object or array based on a given path. It creates new objects or arrays along the path if necessary.
+The `set` function allows you to deeply modify objects and arrays by specifying a path and a value to set at that path.
 
 ## Signature
 
 ```typescript
-function set(obj: any, path: string, value: any): any;
+function set(data: any, path: string, value: any): any;
 ```
-
-## Table of Contents
-
-- [Setting a property in an empty object](#setting-a-property-in-an-empty-object)
-- [Setting an array in an empty object](#setting-an-array-in-an-empty-object)
-- [Setting a property in an array element](#setting-a-property-in-an-array-element)
-- [Setting a property in a nested object](#setting-a-property-in-a-nested-object)
-- [Setting an array in an array element](#setting-an-array-in-an-array-element)
-- [Setting a property with undefined initial object](#setting-a-property-with-undefined-initial-object)
-- [Setting a property in an array with undefined initial array](#setting-a-property-in-an-array-with-undefined-initial-array)
-- [Setting a property in a nested array with undefined initial array](#setting-a-property-in-a-nested-array-with-undefined-initial-array)
-- [Setting a property in a non-existent array index](#setting-a-property-in-a-non-existent-array-index)
-- [Setting a property in a nested object with multiple keys](#setting-a-property-in-a-nested-object-with-multiple-keys)
 
 ## Examples
 
-### Setting a property in an empty object
+- [Set a Property in an Object](#set-a-property-in-an-object)
+- [Set an Empty Array](#set-an-empty-array)
+- [Update a Property in an Array of Objects](#update-a-property-in-an-array-of-objects)
+- [Update Nested Property in an Array](#update-nested-property-in-an-array)
+- [Create Nested Objects](#create-nested-objects)
+- [Update Property in an Array of Objects with Mixed Types](#update-property-in-an-array-of-objects-with-mixed-types)
+- [Update Property with Undefined Original Data](#update-property-with-undefined-original-data)
+- [Update Nested Property with Undefined Original Data](#update-nested-property-with-undefined-original-data)
+- [Update Property at Specific Index](#update-property-at-specific-index)
+- [Create Nested Object with New Key](#create-nested-object-with-new-key)
+
+## Set a Property in an Object
 
 ```typescript
 set({}, 'name', 'Laura');
 // Output: { name: 'Laura' }
 ```
 
-### Setting an array in an empty object
+## Set an Empty Array
 
 ```typescript
 set({}, 'contacts', []);
 // Output: { contacts: [] }
 ```
 
-### Setting a property in an array element
+## Update a Property in an Array of Objects
 
 ```typescript
 set([{ name: 'John' }], '0.name', 'Laura');
 // Output: [{ name: 'Laura' }]
 ```
 
-### Setting a property in a nested object
+## Update Nested Property in an Array
+
+```typescript
+set([{ names: ['John', 'Gabriela'] }], '0.names.1', 'Laura');
+// Output: [{ names: ['John', 'Laura'] }]
+```
+
+## Create Nested Objects
 
 ```typescript
 set({}, 'data.name', 'Laura');
 // Output: { data: { name: 'Laura' } }
 ```
 
-### Setting an array in an array element
+## Update Property in an Array of Objects with Mixed Types
 
 ```typescript
 set([], '0.name', { isValid: false });
 // Output: [{ name: { isValid: false } }]
 ```
 
-### Setting a property with undefined initial object
+## Update Property with Undefined Original Data
 
 ```typescript
 set(undefined, '0.name', { isValid: false });
 // Output: [{ name: { isValid: false } }]
 ```
 
-### Setting a property in an array with undefined initial array
+## Update Nested Property with Undefined Original Data
 
 ```typescript
 set(undefined, 'name.0', { isValid: false });
 // Output: { name: [{ isValid: false }] }
 ```
 
-### Setting a property in a nested array with undefined initial array
+## Update Property at Specific Index
 
 ```typescript
 set([{ name: 'John' }], '1.name', 'Laura');
 // Output: [{ name: 'John' }, { name: 'Laura' }]
 ```
 
-### Setting a property in a non-existent array index
+## Create Nested Object with New Key
 
 ```typescript
 set({}, 'key1.state', ['Laura']);
