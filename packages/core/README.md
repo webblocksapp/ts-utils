@@ -2,72 +2,166 @@
 
 The `isEmpty` function is designed to determine if a given value is considered "empty" or not. It returns a boolean value indicating whether the input is considered empty.
 
+### Signature
+
+```typescript
+function isEmpty(value: any): boolean;
+```
+
 ### Examples
 
-- [Checking undefined](#checking-undefined)
-- [Checking empty string](#checking-empty-string)
-- [Checking empty object](#checking-empty-object)
-- [Checking empty array](#checking-empty-array)
-- [Checking array with undefined elements](#checking-array-with-undefined-elements)
-- [Checking array with empty string elements](#checking-array-with-empty-string-elements)
-- [Checking array with objects having empty properties](#checking-array-with-objects-having-empty-properties)
-- [Checking object with empty properties](#checking-object-with-empty-properties)
-- [Checking non-empty values](#checking-non-empty-values)
+- [Checking Undefined](#checking-undefined)
+- [Checking Empty String](#checking-empty-string)
+- [Checking Empty Object](#checking-empty-object)
+- [Checking Empty Array](#checking-empty-array)
+- [Checking Array with Undefined Elements](#checking-array-with-undefined-elements)
+- [Checking Array with Empty String Elements](#checking-array-with-empty-string-elements)
+- [Checking Array with Objects Having Empty Properties](#checking-array-with-objects-having-empty-properties)
+- [Checking Object with Empty Properties](#checking-object-with-empty-properties)
+- [Checking Non-empty Values](#checking-non-empty-values)
 
-#### Checking undefined
+#### Checking Undefined
 
-```javascript
+```typescript
 isEmpty(undefined); // Returns true
 ```
 
-#### Checking empty string
+#### Checking Empty String
 
-```javascript
+```typescript
 isEmpty(''); // Returns true
 ```
 
-#### Checking empty object
+#### Checking Empty Object
 
-```javascript
+```typescript
 isEmpty({}); // Returns true
 ```
 
-#### Checking empty array
+#### Checking Empty Array
 
-```javascript
+```typescript
 isEmpty([]); // Returns true
 ```
 
-#### Checking array with undefined elements
+#### Checking Array with Undefined Elements
 
-```javascript
+```typescript
 isEmpty([undefined, undefined]); // Returns true
 ```
 
-#### Checking array with empty string elements
+#### Checking Array with Empty String Elements
 
-```javascript
+```typescript
 isEmpty(['', '']); // Returns true
 ```
 
-#### Checking array with objects having empty properties
+#### Checking Array with Objects Having Empty Properties
 
-```javascript
+```typescript
 isEmpty([{ name: '', age: '' }]); // Returns true
 ```
 
-#### Checking object with empty properties
+#### Checking Object with Empty Properties
 
-```javascript
+```typescript
 isEmpty({ name: '', age: '' }); // Returns true
 ```
 
-#### Checking non-empty values
+#### Checking Non-empty Values
 
-```javascript
+```typescript
 isEmpty(0); // Returns false
 isEmpty(111); // Returns false
 isEmpty([{ name: 'Laura', age: '' }]); // Returns false
 isEmpty({ name: 'Laura', age: '' }); // Returns false
 isEmpty('Hello'); // Returns false
+```
+
+## set
+
+The `set` function is used to set a value within a nested object or array based on a given path. It creates new objects or arrays along the path if necessary.
+
+## Signature
+
+```typescript
+function set(obj: any, path: string, value: any): any;
+```
+
+## Table of Contents
+
+- [Setting a property in an empty object](#setting-a-property-in-an-empty-object)
+- [Setting an array in an empty object](#setting-an-array-in-an-empty-object)
+- [Setting a property in an array element](#setting-a-property-in-an-array-element)
+- [Setting a property in a nested object](#setting-a-property-in-a-nested-object)
+- [Setting an array in an array element](#setting-an-array-in-an-array-element)
+- [Setting a property with undefined initial object](#setting-a-property-with-undefined-initial-object)
+- [Setting a property in an array with undefined initial array](#setting-a-property-in-an-array-with-undefined-initial-array)
+- [Setting a property in a nested array with undefined initial array](#setting-a-property-in-a-nested-array-with-undefined-initial-array)
+- [Setting a property in a non-existent array index](#setting-a-property-in-a-non-existent-array-index)
+- [Setting a property in a nested object with multiple keys](#setting-a-property-in-a-nested-object-with-multiple-keys)
+
+## Examples
+
+### Setting a property in an empty object
+
+```typescript
+set({}, 'name', 'Laura');
+// Output: { name: 'Laura' }
+```
+
+### Setting an array in an empty object
+
+```typescript
+set({}, 'contacts', []);
+// Output: { contacts: [] }
+```
+
+### Setting a property in an array element
+
+```typescript
+set([{ name: 'John' }], '0.name', 'Laura');
+// Output: [{ name: 'Laura' }]
+```
+
+### Setting a property in a nested object
+
+```typescript
+set({}, 'data.name', 'Laura');
+// Output: { data: { name: 'Laura' } }
+```
+
+### Setting an array in an array element
+
+```typescript
+set([], '0.name', { isValid: false });
+// Output: [{ name: { isValid: false } }]
+```
+
+### Setting a property with undefined initial object
+
+```typescript
+set(undefined, '0.name', { isValid: false });
+// Output: [{ name: { isValid: false } }]
+```
+
+### Setting a property in an array with undefined initial array
+
+```typescript
+set(undefined, 'name.0', { isValid: false });
+// Output: { name: [{ isValid: false }] }
+```
+
+### Setting a property in a nested array with undefined initial array
+
+```typescript
+set([{ name: 'John' }], '1.name', 'Laura');
+// Output: [{ name: 'John' }, { name: 'Laura' }]
+```
+
+### Setting a property in a non-existent array index
+
+```typescript
+set({}, 'key1.state', ['Laura']);
+// Output: { key1: { state: ['Laura'] } }
 ```
